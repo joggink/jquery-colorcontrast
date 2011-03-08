@@ -10,6 +10,7 @@ reference. To do so we use the function defined by the WAI working group:
 > Color brightness is determined by the following formula:
 > ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
 > Note: This algorithm is taken from a formula for converting RGB values to YIQ values. This brightness value gives a perceived brightness for a color.
+>
 > Source: [w3 WAI working group][w3]
 
 
