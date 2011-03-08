@@ -5,11 +5,23 @@
 	<title>Background color</title>
 	<style>
 		body{
-			background: url('wood.jpg') repeat;
-			color: transparent; /* the text is set to pink on purpose */
+			background: #fff;
+			color: #f06; /* the text is set to pink on purpose */
 			font: .8em/1.4 arial, helvetica, sans-serif;
 			width: 760px;
 			margin: 2em auto;
+		}
+		
+		body.wood{
+			background: url('wood.jpg');
+		}
+		
+		body.yellow{
+			background: url('yellow.gif');
+		}
+		
+		body.water{
+			background: url('water.jpg');
 		}
 		
 		.dark #wrapper{
@@ -28,23 +40,61 @@
 			color: rgba(0,0,0,.8);
 		}
 		
+		.notice{
+			background: #ffc;
+			color: #900;
+		}
+		
+		#crappy-preload{
+			visiblity: hidden;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+		
 	</style>
 </head>
-<body>
+<body class="wood">
 	
 	<div id="wrapper">
 		<h1>Example 1: using the background color</h1>
 		<h2>If the text is pink, something went wrong!</h2>
 		<p>Lorizzle ipsizzle dolizzle sizzle boofron, mah nizzle adipiscing fo shizzle. Nullam shizzle my nizzle crocodizzle velit, yippiyo volutpizzle, suscipit daahng dawg, break yo neck, yall vizzle, arcu. Pellentesque izzle shizzle my nizzle crocodizzle. Sizzle erizzle. Break it down izzle dolor dapibizzle ass tempizzle mofo. Maurizzle pellentesque nibh izzle turpizzle. Doggy in tortor. Pellentesque mofo rhoncizzle yo. In hac habitasse platea dictumst. Donec dapibizzle. Shizzle my nizzle crocodizzle tellizzle urna, pretizzle doggy, check it out that's the shizzle, eleifend vitae, nunc. Shizznit boom shackalack. Pot semper velit sizzle purizzle.</p>
+		<ul class="notice">
+			<li>Really preload background images before calculating the color</li>
+			<li>Use more pixels from the image to define if it's light  or black</li>
+		</ul>
+		<form>
+			<p>Change the background image</p>
+			<dl>
+				<dt><label for="wood">Wood pattern</label></dt>
+				<dd><input type="radio" name="background" value="wood" id="wood" checked="checked" /></dd>
+				<dt><label for="yellow">Yellow pattern</label></dt>
+				<dd><input type="radio" name="background" value="yellow" id="yellow" /></dd>
+				<dt><label for="water">Water pattern</label></dt>
+				<dd><input type="radio" name="background" value="water" id="water" /></dd>
+			</dl>
+		</form>
 		
 	</div>
 	
+	
+	<div id="crappy-preload">
+		<img src="wood.jpg" alt="" />
+		<img src="yellow.gif" alt="" />
+		<img src="water.jpg" alt="" />
+	</div>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
 	<script src="../jquery.colorcontrast.js"></script>
 	<script>
 		$(window).load(function(){
 			$('body').colorcontrast();
+			
+			$('input[type=radio]').click(function(){
+				$('body').removeClass('wood yellow water').addClass($(this).val()).colorcontrast();
+			})
+			
 		});
 	</script>
 	
