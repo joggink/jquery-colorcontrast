@@ -11,7 +11,7 @@ reference. To do so we use the function defined by the WAI working group:
 > ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
 > Note: This algorithm is taken from a formula for converting RGB values to YIQ values. This brightness value gives a perceived brightness for a color.
 >
-> Source: [w3 WAI working group][w3]
+> Source: [W3 WAI working group - Techniques For Accessibility Evaluation And Repair Tools][w3]
 
 
 [w3]: http://www.w3.org/WAI/ER/WD-AERT/#color-contrast
