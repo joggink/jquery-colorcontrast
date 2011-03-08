@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Background color</title>
+	<style>
+		body{
+			background: #0cf;
+			color: #f0c; /* the text is set to pink on purpose */
+			font: .8em/1.4 arial, helvetica, sans-serif;
+			width: 760px;
+			margin: 2em auto;
+		}
+		
+		.dark #wrapper{
+			color: #fff;
+		}
+		
+		.dark #wrapper p{
+			color: rgba(255,255,255,.8);
+		}
+		
+		.light #wrapper{
+			color: #000;
+		}
+		
+		.light #wrapper p{
+			color: rgba(0,0,0,.8);
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div id="wrapper">
+		<h1>Example 1: using the background color</h1>
+		<h2>If the text is pink, something went wrong!</h2>
+		<p>Lorizzle ipsizzle dolizzle sizzle boofron, mah nizzle adipiscing fo shizzle. Nullam shizzle my nizzle crocodizzle velit, yippiyo volutpizzle, suscipit daahng dawg, break yo neck, yall vizzle, arcu. Pellentesque izzle shizzle my nizzle crocodizzle. Sizzle erizzle. Break it down izzle dolor dapibizzle ass tempizzle mofo. Maurizzle pellentesque nibh izzle turpizzle. Doggy in tortor. Pellentesque mofo rhoncizzle yo. In hac habitasse platea dictumst. Donec dapibizzle. Shizzle my nizzle crocodizzle tellizzle urna, pretizzle doggy, check it out that's the shizzle, eleifend vitae, nunc. Shizznit boom shackalack. Pot semper velit sizzle purizzle.</p>
+	</div>
+	
+	<div id="callback">
+		<div class="colorwheel"></div>
+	</div>
+	
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+	<script src="//github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js"></script>
+	<script src="//jweir.github.com/colorwheel/javascripts/colorwheel.js"></script>
+	<script src="../jquery.colorcontrast.js"></script>
+	<script>	
+		$('body').colorcontrast();
+
+
+		/* raphael colorpicker */
+		var cw = Raphael.colorwheel($("#callback .colorwheel")[0],150),
+			_b = $("body");
+		cw.color("#000");
+
+		cw.onchange(function(color){
+			var _c = color.hex;
+			_b.css("background-color", _c)
+			_b.colorcontrast();
+	    })
+
+	</script>
+	
+</body>
+</html>
