@@ -4,6 +4,14 @@
  * @Author URI: 	http://builtbyrobot.com
  **/
 
+function debug(o){
+	var _r = '';
+	for (var k in o){
+		_r += 'o[' + k + '] => ' + o[k] + '\n';
+	}
+	window.alert(_r);
+}
+
 (function($){
 
 	var methods = {
@@ -22,13 +30,32 @@
 		*/
 		init : function() {
 			// check if we have a background image, if not, use the backgroundcolor
-			$(this).colorcontrast('bgColor');
+			if ($(this).css('background-image') == 'none') {
+				$(this).colorcontrast('bgColor');
+			}else{
+				$(this).colorcontrast('bgImage');
+			}
 			return this;
 		},
 		bgColor : function() {
 			var t = $(this);
 			t.removeClass('dark light');
 			t.addClass($(this).colorcontrast('calculateYIQ', t.css('background-color')));
+		},
+		bgImage : function() {
+			var t = $(this);
+			t.removeClass('dark light');
+			t.addClass($(this).colorcontrast('calculateYIQ', t.colorcontrast('fetchImageColor')));
+		},
+		fetchImageColor : function(){
+			var img = new Image();
+			var src = $(this).css('background-image').replace('url(', '').replace(/'/, '').replace(')', '');
+			img.src = src;
+			var can = document.createElement('canvas');	
+			var context = can.getContext('2d');
+			context.drawImage(img, 0, 0);
+			data = context.getImageData(0, 0, 1, 1).data;
+			return 'rgb(' + data[0] + ',' + data[1] + ',' + data[2] + ')';
 		},
 		calculateYIQ : function(color){
 			var r = 0, g = 0, b = 0, a = 1, yiq = 0;
